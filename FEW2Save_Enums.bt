@@ -1,0 +1,102 @@
+//------------------------------------------------
+//--- 010 Editor v12.0.1 Binary Template
+//
+//      File: FEW2 Save Files
+//   Authors: KuroOkamii
+//   Version: 0.1
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+
+typedef enum <ushort> CHARACTERS
+{
+    BylethM,
+    BylethF,
+    Edelgard,
+    Dimitri,
+    Claude,
+    Hubert,
+    Ferdinand,
+    Linhardt,
+    Caspar,
+    Bernadetta,
+    Dorothea,
+    Petra,
+    Dedue,
+    Felix,
+    Ashe,
+    Sylvain,
+    Mercedes,
+    Annette,
+    Ingrid,
+    Lorenz,
+    Raphael,
+    Ignatz,
+    Lysithea,
+    Marianne,
+    Hilda,
+    Leonie,
+    Seteth,
+    Flayn,
+    Hanneman,
+    Manuela,
+    Gilbert,
+    Alois,
+    Catherine,
+    Shamir,
+    Cyril,
+    Jeralt,
+    Rhea,
+    Sothis,
+    Kronya,
+    Solon,
+    Thales,
+    Cornelia,
+    DeathKnight,
+    Kostas,
+    Lonato,
+    Miklan,
+    Randolph,
+    FlameEmperor,
+    Anna,
+    Jeritza,
+    Rodrigue,
+    Judith,
+    Nader,
+    Monica,
+    LordArundel,
+    Tomas,
+    Nemesis,
+    Seiros = 0x3A,
+    Yuri = 0x64,
+    Balthus,
+    Constance,
+    Hapi,
+    ShezM = 0x6E,
+    ShezF,
+    Holst,
+    Gatekeeper = 0x74,
+    Arval,
+    Arval2 = 0x8C
+}Characters;
+
+typedef enum <ushort> WEAPONS
+{
+    IronAxe = 0x7,
+    IronTome
+}Weapons;
+
+typedef enum <ushort> CLASSES
+{
+    Fighter = 0x4,
+    Monk
+}Classes;
+
+typedef enum <ushort> ARTS
+{
+    SwingingFury = 0x3C,
+    CurvedShort = 0x5C
+}CombatArts;

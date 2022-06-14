@@ -1,0 +1,141 @@
+//------------------------------------------------
+//--- 010 Editor v12.0 Binary Template
+//
+//      File: FEW2 save file
+//   Authors: Josch
+//   Version: 0.1
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+
+#include "FEW2Save_Enums.bt"
+
+typedef struct SAVEBLOCK
+{
+    uint32 blockChecksum<name="Block checksum">;
+    uint32 blockSize<name = "Block size">;
+    uint32 always1<name = "Unk, always 1 ?">;
+    uint32 reserved<name = "Reserved">;
+    byte data[blockSize - 0x10]<name="Block data",comment = "sum the ubytes here to get the block's checksum">;
+
+}SaveBlock;    
+
+
+typedef struct EQUIPMENT
+{
+    Characters charID<name="Character Asset ID">;
+    FSkip(0xA);
+    Classes class<name="Class">;
+    Weapons weapon<name="Equipped Weapon">;
+    FSkip(0x2);
+    CombatArts ability1<name="First Combat Art">;
+    CombatArts ability2<name="Second Combat Art">;
+    FSkip(0x14);
+    ushort unk1;
+    FSkip(0x2);
+}Equipment;
+
+typedef struct CHARSTATS
+{
+    byte unknown[112]<name="Padding?">;
+    Equipment equip<name="Equipment/Skills">;
+    byte unk3[294]<name="Unknown3">;
+    ushort Health<name="HP">;
+    ushort Str<name="Strength">;
+    ushort Mag<name="Magic">;
+    ushort Dex<name="Dexterity">;
+    ushort Spd<name="Speed">;
+    ushort Lck<name="Luck">;
+    ushort Def<name="Defense">;
+    ushort Res<name="Resistance">;
+    ushort Cha<name="CHA">;
+    ushort Lvl<name="Level">;
+    byte unknown2[2968]<name="Unknown2">;
+}CharStats;
+
+
+typedef struct CHARACTER
+{
+    uint32 blockChecksum<name="Checksum">;
+    uint32 blockSize<name = "Block size">;
+    uint32 always1<name = "Unk, always 1 ?">;
+    uint32 reserved<name = "Reserved">;
+    CharStats Stats<name="Stats">;
+}Character;
+
+typedef struct CHARLIST
+{
+    Character ShezM<name="Shez (Male)">;
+    Character ShezF<name="Shez (Female)">;
+    Character BylethM<name="Byleth (Male)?">;
+    Character BylethF<name="Byleth (Female)?">;
+    Character Edelgard<name="Edelgard">;
+    Character Hubert<name="Hubert">;
+    Character Dorothea<name="Dorothea">;
+    Character Ferdinand<name="Ferdinand">;
+    Character Bernadetta<name="Bernadetta">;
+    Character Caspar<name="Caspar">;
+    Character Petra<name="Petra">;
+    Character Linhardt<name="Linhardt">;
+    Character Dimitri<name="Dimitri">;
+    Character Dedue<name="Dedue">;
+    Character Felix<name="Felix">;
+    Character Mercedes<name="Mercedes">;
+    Character Ashe<name="Ashe">;
+    Character Annette<name="Annette">;
+    Character Sylvain<name="Sylvain">;
+    Character Ingrid<name="Ingrid">;
+    Character Claude<name="Claude">;
+    Character Lorenz<name="Lorenz">;
+    Character Hilda<name="Hilda">;
+    Character Raphael<name="Raphael">;
+    Character Lysithea<name="Lysithea">;
+    Character Ignatz<name="Ignatz">;
+    Character Marianne<name="Marianne">;
+    Character Leonie<name="Leonie">;
+    Character Yuri<name="Yuri">;
+    Character Constance<name="Constance">;
+    Character Balthus<name="Balthus">;
+    Character Hapi<name="Hapi">;
+    Character Manuela<name="Manuela">;
+    FSkip(0xd80); //skip empty/placeholder characters
+    Character Seteth<name="Seteth">;
+    Character Flayn<name="Flayn">;
+    FSkip(0xd80); //skip empty/placeholder characters
+    Character Catherine<name="Catherine">;
+    FSkip(0x1b00); //skip empty/placeholder characters
+    Character Shamir<name="Shamir">;
+    Character Jeralt<name="Jeralt">;
+    Character Seiros<name="Seiros/Rhea">;
+    FSkip(0xd80); //skip empty/placeholder characters
+    Character Jeritza<name="Jeritza">;
+    Character Rodrigue<name="Rodrigue">;
+    Character Monica<name="Monica">;
+    Character Holst<name="Holst">;
+    Character nn1<name="Asset ID 71">;
+    Character nn2<name="Asset ID 72">;
+    Character nn3<name="Asset ID 73">;
+    Character Sothis<name="Sothis">;
+    Character Arval<name="Arval">;
+    Character Gatekeeper<name="Gatekeeper">;
+    Character Arval2<name="Arval again?">;
+    FSkip(0x3d980); //skip empty/placeholder characters
+    Character Shez2<name="Shez 2?",comment="Maybe deployment slot 1">;
+    Character Edel2<name="Edelgard 2?",comment="Maybe deployment slot 2">;
+    Character Hub2<name="Hubert 2?",comment="Maybe deployment slot 3">;
+    Character Ferd2<name="Ferdinand 2?",comment="Maybe deployment slot 4">;
+    FSkip(0x3600); //skip empty/placeholder characters
+    
+}CharList;
+    
+struct FILE
+{
+    FSkip(0x15c); //Jump to the blocks directly
+    SaveBlock blocks[5]<name="Blocks",optimize=false>;
+    CharList characters<name="Character Stats">;
+    SaveBlock blocks[2]<name="Blocks",optimize=false>;
+    byte lastSectionStart;
+}File<name="Save file", open=true>;
