@@ -11,6 +11,13 @@
 //   History: 
 //------------------------------------------------
 
+typedef enum <int> RECRUIT
+{
+    Recruited = 1 << 0,
+    NotRecruited = 1 << 1
+}Recruit;
+
+
 typedef enum <ushort> CHARACTERS
 {
     BylethM,
@@ -80,23 +87,157 @@ typedef enum <ushort> CHARACTERS
     Holst,
     Gatekeeper = 0x74,
     Arval,
-    Arval2 = 0x8C
+    Arval2 = 0x8C,
+    Placeholder = 65535,
+    DefaultDeploy = 0x280
 }Characters;
+
 
 typedef enum <ushort> WEAPONS
 {
-    IronAxe = 0x7,
-    IronTome
+    TrainingSword,
+    TrainingLance,
+    TrainingAxe,
+    TrainingBow,
+    TrainingGauntlets,
+    TrainingTome,
+    IronSword1,
+    IronAxe,
+    IronTome,
+    IronTome2,
+    IronLance,
+    IronBow,
+    IronAxe2,
+    IronSword,
+    IronTome3,
+    VeninEdge,
+    IronTome4
 }Weapons;
 
 typedef enum <ushort> CLASSES
 {
-    Fighter = 0x4,
-    Monk
+    Noble,
+    Commoner,
+    Myrmidon,
+    Soldier,
+    Fighter,
+    Monk,
+    Lord,
+    Mercenary,
+    Thief,
+    ArmoredKnight,
+    Cavalier,
+    Brigand,
+    Archer,
+    Brawler,
+    Mage,
+    DarkMage,
+    Priest,
+    Barbarossa,
+    Hero,
+    Swordmaster,
+    Assassin,
+    FortressKnight,
+    Paladin,
+    PegasusKnight,
+    WyvernRider,
+    Warrior,
+    Sniper,
+    Grappler,
+    Warlock,
+    DarkBishop,
+    Bishop,
+    FalconKnight,
+    WyvernLord,
+    MortalSavant,
+    GreatKnight,
+    BowKnight,
+    DarkKnight,
+    HolyKnight,
+    WarMaster,
+    Gremory,
+    Emperor,    
+    Agastya,
+    EnlightenedOne,
+    Dancer,
+    GreatLord,
+    ArmoredLord,
+    HighLord,
+    WyvernMaster,
+    DeathKnightClass,
+    Flugel, 
+    Trickster,
+    WarMonk,
+    DarkFlier,
+    Valkyrie,
+    Archbishop,
+    NPC,
+    Prionsa,
+    Gurgan,
+    Asura,
+    Silverheart
 }Classes;
 
 typedef enum <ushort> ARTS
 {
+    WrathStrike,
+    Windsweep = 0x2,
+    Firesweep,
+    Shadowblade,
+    Iceblade,
+    Lightblade,
+    Grounder,
+    FlashStrike = 0xC,
+    Earthsplitter = 0x20,
+    BurningQuake,
+    GlowingEmber,
+    Stormblade = 0x25,
+    Knightkneeler,
+    FrozenLance = 0x28,
+    Atrocity = 0x2B,
+    ThunderRush = 0x2D,
+    Wheelsweep = 0x2F,
     SwingingFury = 0x3C,
-    CurvedShort = 0x5C
+    Shredder = 0x40,
+    ApocalypticFlame = 0x45,
+    Spike,
+    ReturningAxe = 0x4A,
+    LightningAxe,
+    Smash,
+    InvigoratingSpirit = 0x4E,
+    SpiralShot = 0x5A,
+    CurvedShot = 0x5C,
+    FallenStar,
+    PointBlankVolley,
+    TrackingShot = 0x62,
+    BreakShot = 0x66,
+    DrillArrow = 0x69,
+    RushingBlow = 0x78,
+    DrainingBlow = 0x7D,
+    DualDevastators = 0x82,
+    Bombard = 0x83,
+    BattleTrance = 0x85,
+    Fire = 0x96,
+    Bolganone,
+    Ragnarok,
+    Thunder,
+    Thoron,
+    Wind = 0x9C,
+    CuttingGale,
+    Excalibur,
+    Blizzard,
+    Sagittae = 0xA1,
+    AgneasArrow = 0xA3,
+    Miasma,
+    MireB,
+    SwarmZ,
+    DeathR = 0xA8,
+    Heal = 0xAE,
+    Recover,
+    Physic,
+    Fortify,
+    Nosferatu,
+    Seraphim,
+    Restore = 0xB7,
+    Ward
 }CombatArts;
