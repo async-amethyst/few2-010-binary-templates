@@ -87,20 +87,58 @@ typedef struct FLAGS
 }Flags;
 
 
+typedef struct WEAPONSTRUCT
+{
+    byte unknown1[4]<name="Unknown1">;
+    Weapons weapon<name="Weapon Type">;
+    byte unknown2<name="Unknown2">;
+    ushort MtBuff<name="Increased Mt">;
+    ushort DurBuff<name="Increased Dur">;
+    WeaponSkills Skl1<name="Skill 1">;
+    WeaponSkills Skl2<name="Skill 2">;
+    ushort unk3<name="Unknown3">;
+    byte MaxMt<name="Max Mt Forge">;
+    byte CurMt<name="Current Mt Forge">;
+    byte MaxDur<name="Max Dur Forge">;
+    byte CurDur<name="Current Dur Forge">;
+    byte unknown4[4]<name="Unknown4">;
+}WeaponStruct;
+
+string GetWeaponName(byte convoySlotID, WeaponStruct weapons[])
+{
+    if(convoySlotID == -1)
+    {
+        return Str("None");
+    }
+    else
+    {   
+        return Str("%s (%g)", EnumToString(weapons[convoySlotID].weapon), convoySlotID);
+    }
+}
+
+
 typedef struct EQUIPMENT
 {
     Characters charID<name="Character Asset ID">;
     FSkip(0xA);
     Classes class<name="Class">;
-    Weapons weapon<name="Equipped Weapon">;
-    FSkip(0x2);
+    byte weapon<name="Weapon",read=GetWeaponName(this, File.blocks[4].block4Data.weapons),comment="To edit this, go to Block 4 and edit the Weapon Struct at this index">;
+    FSkip(0x3);
     CombatArts ability1<name="First Combat Art">;
     CombatArts ability2<name="Second Combat Art">;
-    FSkip(0x14);
+    ushort Skl1<name="Skill1">;
+    ushort Skl2<name="Skill2">;
+    ushort Skl3<name="Skill3">;
+    ushort Skl4<name="Skill4">;
+    ushort Skl5<name="Skill5">;
+    ushort Skl6<name="Skill6">;
+    ushort Skl7<name="Skill7">;
+    ushort Skl8<name="Skill8">;
+    ushort Skl9<name="Skill9">;
+    ushort Skl10<name="Skill10">;
     ushort unk1<comment="Seems to have to be 256 in most cases">;
     FSkip(0x2);
 }Equipment;
-
 
 typedef struct CHARSTATS
 {
@@ -121,7 +159,6 @@ typedef struct CHARSTATS
     ushort Lvl<name="Level">;
     byte unknown2[2968]<name="Unknown2">;
 }CharStats;
-
 
 typedef struct CHARACTER
 {
@@ -160,7 +197,9 @@ typedef struct BLOCK4DATA
     Flags recruitFlags[0x2]<name="Recruitment Flags">;
     byte unk2[0x64C]<name="Unknown Block 2">;
     DeployStruct charDeploy<name="Active Deployed Characters", comment="If a character is BylethM, that slot is likely not being currently used.">;
-    byte unk3[0xBB90]<name="Unknown Block 3">;
+    byte unk3[0x172C]<name="Unknown Block 3">;
+    WeaponStruct weapons[1150]<name="Weapon Block">;
+    byte unk5[0x3894]<name="Unknown Block 5">;
     char shezName[0x8]<name="Main Character Name", comment="Use 32 for space and 0 for blank space.">;
     FSkip(0x20);
     char ashName[0x8]<name="Ashen Demon Name", comment="Use 32 for space and 0 for blank space.">;

@@ -2,4 +2,14 @@
 
 Fire Emblem Warriors: Three Hopes binary templates for 010 Editor.
 
-As the game has not came out yet, do not expect many to be made until the game is out. This game does share most formats with other Koei Tecmo games, you should be able to find templates you need for those from the FETH templates repo. 
+The only current template here is for saves. More will be added if/when more are created.
+
+Current Supported Features:
+
+- Unit stat structures.
+- Weapon convoy slot editing.
+- Skill/combat art editing.
+- Recruit flag editing.
+- Basic flag editing (not completed yet).
+- Deploy slot editing.
+- Character name editing.
