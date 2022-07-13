@@ -220,20 +220,35 @@ typedef struct BATALLIONBLOCK
 typedef struct BLOCK4DATA
 {
     FSkip(0x70);
-    byte unk1[0xA8]<name="Unknown Block 1", comment="Timeskip flag and current chapter data is in here">;
+    ubyte unk00;
+    ubyte unk01;
+    Route route<name="Route">;
+    switch(this.route)
+    {
+        default:
+            CrimsonChapter chapter<name="Chapter">;
+            break;
+        case 1:
+            AzureChapter chapter<name="Chapter">;
+            break;
+        case 2:
+            GoldenChapter chapter<name="Chapter">;
+            break;
+    }
+    ubyte unk1[0xA4]<name="Unknown Block 1", comment="Timeskip flag and current chapter data is in here">;
     RecruitFlags1 flags1<name="Recruitment Flags Block 1">;
     Flags recruitFlags[0x2]<name="Recruitment Flags">;
-    byte unk2[0x64C]<name="Unknown Block 2">;
+    ubyte unk2[0x64C]<name="Unknown Block 2">;
     DeployStruct charDeploy<name="Active Deployed Characters", comment="If a character is BylethM, that slot is likely not being currently used.">;
-    byte unk3[0x172C]<name="Unknown Block 3">;
+    ubyte unk3[0x172C]<name="Unknown Block 3">;
     WeaponStruct weapons[1150]<name="Weapon Block">;
     FSkip(0x4);
     AccessoryStruct accessories[1040]<name="Accessory Block">;
     ConsumeableBlock consumeables[0xF9]<name="Consumeables Block">;
     MaterialBlock materials[0xFE]<name="Materials Block">;
     FSkip(0x14);
-    BatallionBlock batallions[105]<name="Batallions Block">;
-    byte unk5[0x1C]<name="Unknown Block 5">;
+    BatallionBlock batallions[0x105]<name="Batallions Block">;
+    ubyte unk5[0x1C]<name="Unknown Block 5">;
     char shezName[0x8]<name="Main Character Name", comment="Use 32 for space and 0 for blank space.">;
     FSkip(0x20);
     char ashName[0x8]<name="Ashen Demon Name", comment="Use 32 for space and 0 for blank space.">;

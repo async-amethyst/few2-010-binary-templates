@@ -622,3 +622,70 @@ typedef enum <ushort> WEAPONSKILLS
 	RangePlus,
     No_Skill = 0xFFFF,
 }WeaponSkills;
+
+typedef enum <ubyte> ROUTE
+{
+    CrimsonFlower,
+    AzureGleam,
+    GoldenWildfire
+}Route;
+
+typedef enum <ubyte> CRIMSONCHAPTER
+{
+    CrossedRoadsCrimson = 1,
+    AChanceEncounterCrimson,
+    ThreeHousesCrimson,
+    TheShadowsOfAdrestia,
+    TheStruggleCommences,
+    SkirmishInTheFogCrimson,
+    BridgeOfBetrayal,
+    TheTriumphOfValor,
+    TheMaidensPeril,
+    UnrestInEnbarr,
+    ShiftingHistory,
+    HeroicBloodlines,
+    TheRisingDarkness,
+    SeveringThePast,
+    AClashOfAmbitions,
+    TormentOfTheEagleAndLion,
+    APathForward
+}CrimsonChapter;
+
+typedef enum <ubyte> AZURECHAPTER
+{
+    CrossedRoadsAzure = 1,
+    AChanceEncounterAzure,
+    ThreeHousesAzure,
+    CrisisInFhirdiad,
+    ToWarAzure,
+    SkirmishInTheFogAzure,
+    ConspiracyInTheAir,
+    TheKingAwakens,
+    TheBloodStainedLance,
+    ReunionAtTheFortressCity,
+    Fanaticism,
+    Reprisal,
+    ATrickOfTheGoddess,
+    ClashOfTorment,
+    TheAbsentEmperor,
+    TheEndOfTragedy
+}AzureChapter;
+
+typedef enum <ubyte> GOLDENCHAPTER
+{
+    CrossedRoadsGolden = 1,
+    AChanceEncounterGolden,
+    ThreeHousesGolden,
+    ToWarGolden,
+    TheGoldenGuardian,
+    TheLeadersStrategem,
+    AContestOfBeasts,
+    WhatMakesAKing,
+    TheEndOfTheAlliance,
+    LoveAndLoss,
+    TheSwordSwingsWide,
+    TwoKings,
+    DarknessAttacks,
+    ASymbolOfThePast,
+    FieldOfBeginnings
+}GoldenChapter;
