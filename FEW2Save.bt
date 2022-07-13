@@ -122,8 +122,8 @@ typedef struct EQUIPMENT
     Characters charID<name="Character Asset ID">;
     FSkip(0xA);
     Classes class<name="Class">;
-    byte weapon<name="Weapon",read=GetWeaponName(this, File.blocks[4].block4Data.weapons),comment="To edit this, go to Block 4 and edit the Weapon Struct at this index">;
-    FSkip(0x3);
+    ushort weapon<name="Weapon",read=GetWeaponName(this, File.blocks[4].block4Data.weapons),comment="To edit this, go to Block 4 and edit the Weapon Struct at this index">;
+    ushort accessory<name="Accessory?">;
     CombatArts ability1<name="First Combat Art">;
     CombatArts ability2<name="Second Combat Art">;
     ushort Skl1<name="Skill1">;
@@ -157,7 +157,9 @@ typedef struct CHARSTATS
     ushort Res<name="Resistance">;
     ushort Cha<name="CHA">;
     ushort Lvl<name="Level">;
-    byte unknown2[2968]<name="Unknown2">;
+    byte unknown2[0x9C8]<name="Unknown2">;
+    ushort characterAbilities[3]<name="Character Unique Abilities", comment="Refer to spreadsheet for IDs.">;
+    byte unknown3[0x1CA]<name="Unknown3">;
 }CharStats;
 
 typedef struct CHARACTER
@@ -189,6 +191,32 @@ typedef struct DEPLOYSTRUCT
     FSkip(0x2);
 }DeployStruct;
 
+typedef struct ACCESSORYSTRUCT
+{
+    Accessories accessID<name="Accessory ID">;
+    byte unk[6]<name="Unknown">;
+}AccessoryStruct;
+
+typedef struct CONSUMEABLEBLOCK
+{
+    ushort amount<name="Amount">;
+    byte unk[6];
+}ConsumeableBlock;
+
+typedef struct MATERIALBLOCK
+{
+    ushort amount<name="Amount">;
+    byte unk[6];
+}MaterialBlock;
+
+typedef struct BATALLIONBLOCK
+{
+    ushort slotID<name="Slot ID">;
+    ushort unk1;
+    ushort batID<name="Batallion ID">;
+    ushort unk2;
+}BatallionBlock;
+
 typedef struct BLOCK4DATA
 {
     FSkip(0x70);
@@ -199,7 +227,13 @@ typedef struct BLOCK4DATA
     DeployStruct charDeploy<name="Active Deployed Characters", comment="If a character is BylethM, that slot is likely not being currently used.">;
     byte unk3[0x172C]<name="Unknown Block 3">;
     WeaponStruct weapons[1150]<name="Weapon Block">;
-    byte unk5[0x3894]<name="Unknown Block 5">;
+    FSkip(0x4);
+    AccessoryStruct accessories[1040]<name="Accessory Block">;
+    ConsumeableBlock consumeables[0xF9]<name="Consumeables Block">;
+    MaterialBlock materials[0xFE]<name="Materials Block">;
+    FSkip(0x14);
+    BatallionBlock batallions[105]<name="Batallions Block">;
+    byte unk5[0x1C]<name="Unknown Block 5">;
     char shezName[0x8]<name="Main Character Name", comment="Use 32 for space and 0 for blank space.">;
     FSkip(0x20);
     char ashName[0x8]<name="Ashen Demon Name", comment="Use 32 for space and 0 for blank space.">;
