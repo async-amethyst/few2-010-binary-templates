@@ -235,7 +235,11 @@ typedef struct BLOCK4DATA
             GoldenChapter chapter<name="Chapter">;
             break;
     }
-    ubyte unk1[0xA4]<name="Unknown Block 1", comment="Timeskip flag and current chapter data is in here">;
+    FSkip(0x14);
+    uint gold<name="Gold">;
+    uint unk02;
+    uint renown<name="Renown">;
+    ubyte unk1[0x84]<name="Unknown Block 1", comment="Timeskip flag and current chapter data is in here">;
     RecruitFlags1 flags1<name="Recruitment Flags Block 1">;
     Flags recruitFlags[0x2]<name="Recruitment Flags">;
     ubyte unk2[0x64C]<name="Unknown Block 2">;
