@@ -209,6 +209,31 @@ typedef struct MATERIALBLOCK
     byte unk[6];
 }MaterialBlock;
 
+typedef struct MASTERMATERIALBLOCK
+{
+    FSkip(0x8);
+    MaterialBlock materials1[0x8]<name="Materials Block (Stones)">;
+    FSkip(0x470);
+    MaterialBlock materials2[0x4]<name="Materials Block (Building)">;
+    FSkip(0x30);
+    MaterialBlock materials3[0x3]<name="Materials Block (TrainingGear)">;
+    FSkip(0x10);
+    MaterialBlock materials4[0x3]<name="Materials Block (CombatManual)">;
+    FSkip(0x10);
+    MaterialBlock materials5[0x3]<name="Materials Block (SmithingSet)">;
+    FSkip(0x10);
+    MaterialBlock materials6[0x3]<name="Materials Block (Furnishings)">;
+    FSkip(0x10);
+    MaterialBlock materials7[0x3]<name="Materials Block (License)">;
+    FSkip(0x10);
+    MaterialBlock materials8[0x3]<name="Materials Block (Insignia)">;
+    FSkip(0x10);
+    MaterialBlock materials9[0x3]<name="Materials Block (Storage)">;
+    FSkip(0x8);
+    FSkip(0x1D8);
+}MasterMaterialBlock;
+
+
 typedef struct BATALLIONBLOCK
 {
     ushort slotID<name="Slot ID">;
@@ -249,7 +274,7 @@ typedef struct BLOCK4DATA
     FSkip(0x4);
     AccessoryStruct accessories[1040]<name="Accessory Block">;
     ConsumeableBlock consumeables[0xF9]<name="Consumeables Block">;
-    MaterialBlock materials[0xFE]<name="Materials Block">;
+    MasterMaterialBlock materials<name="Materials Block">;
     FSkip(0x14);
     BatallionBlock batallions[0x105]<name="Batallions Block">;
     ubyte unk5[0x1C]<name="Unknown Block 5">;
